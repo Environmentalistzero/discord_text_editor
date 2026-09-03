@@ -24,6 +24,8 @@ editor.addEventListener('input', () => {
 editor.addEventListener('keydown', handleUndoRedo);
 document.querySelectorAll('[data-format]').forEach(button => button.addEventListener('click', () => applyFormat(...formatMap[button.dataset.format])));
 document.querySelectorAll('[data-line-format]').forEach(button => button.addEventListener('click', () => applyLineFormat(button.dataset.lineFormat)));
+document.querySelector('#ordered-list-button').addEventListener('click', applyOrderedList);
+document.querySelector('#indent-list-button').addEventListener('click', indentSelectedLines);
 document.querySelector('#link-button').addEventListener('click', applyLink);
 
 colorMenuButton.addEventListener('click', event => {
@@ -63,6 +65,33 @@ function applyLineFormat(prefix) {
   const lines = selectedLines.split('\n');
   const shouldRemove = lines.every(line => line.startsWith(prefix));
   const updated = lines.map(line => shouldRemove ? line.slice(prefix.length) : prefix + line).join('\n');
+  editor.value = value.slice(0, firstLineStart) + updated + value.slice(lastLineEnd);
+  editor.focus();
+  editor.setSelectionRange(firstLineStart, firstLineStart + updated.length);
+  renderPreview();
+  saveEditorState();
+}
+
+function applyOrderedList() {
+  updateSelectedLines(lines => {
+    const isOrderedList = lines.every(line => /^\d+\. /.test(line));
+    return lines.map((line, index) => isOrderedList ? line.replace(/^\d+\. /, '') : `${index + 1}. ${line.replace(/^[-*] /, '')}`);
+  });
+}
+
+function indentSelectedLines() {
+  updateSelectedLines(lines => {
+    const isIndented = lines.every(line => line.startsWith('  '));
+    return lines.map(line => isIndented ? line.slice(2) : `  ${line}`);
+  });
+}
+
+function updateSelectedLines(transform) {
+  const { selectionStart: start, selectionEnd: end, value } = editor;
+  const firstLineStart = value.lastIndexOf('\n', start - 1) + 1;
+  const lastLineEnd = value.indexOf('\n', end) === -1 ? value.length : value.indexOf('\n', end);
+  const lines = value.slice(firstLineStart, lastLineEnd).split('\n');
+  const updated = transform(lines).join('\n');
   editor.value = value.slice(0, firstLineStart) + updated + value.slice(lastLineEnd);
   editor.focus();
   editor.setSelectionRange(firstLineStart, firstLineStart + updated.length);
@@ -158,13 +187,19 @@ function renderPreview() {
     if (/^## /.test(line)) return `<h2>${renderInline(line.slice(3))}</h2>`;
     if (/^# /.test(line)) return `<h1>${renderInline(line.slice(2))}</h1>`;
     if (/^&gt; /.test(line)) return `<blockquote>${renderInline(line.slice(5))}</blockquote>`;
-    if (/^- /.test(line)) return `<li>${renderInline(line.slice(2))}</li>`;
+    const unorderedList = line.match(/^(\s*)[-*] (.*)$/);
+    if (unorderedList) return renderListItem('•', unorderedList[2], unorderedList[1].length);
+    const orderedList = line.match(/^(\s*)(\d+)\. (.*)$/);
+    if (orderedList) return renderListItem(`${orderedList[2]}.`, orderedList[3], orderedList[1].length);
     return renderInline(line);
   }).join('<br>');
-  html = html.replace(/(?:<li>.*?<\/li><br>?)+/g, match => `<ul>${match.replaceAll('<br>', '')}</ul>`);
   blocks.forEach((block, index) => { html = html.replace(`\u0000BLOCK${index}\u0000`, block); });
   preview.innerHTML = html;
   syncWorkspaceHeight();
+}
+
+function renderListItem(marker, content, whitespaceCount) {
+  return `<div class="list-item" style="--list-indent:${Math.floor(whitespaceCount / 2)}"><span class="list-marker">${marker}</span><span>${renderInline(content)}</span></div>`;
 }
 
 function syncWorkspaceHeight() {

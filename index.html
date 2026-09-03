@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Format Discord messages with Markdown, preview them live, and copy them in one click." />
     <title>Discord Text Editor</title>
-    <link rel="stylesheet" href="assets/css/styles.css?v=3" />
-    <script src="assets/js/app.js?v=3" defer></script>
+    <link rel="stylesheet" href="assets/css/styles.css?v=4" />
+    <script src="assets/js/app.js?v=4" defer></script>
   </head>
   <body>
     <main class="page-shell">
@@ -43,6 +43,8 @@
               <button class="toolbar-button" type="button" data-format="inline-code" title="Inline code">&lt;/&gt;</button>
               <button class="toolbar-button" type="button" data-format="code-block" title="Code block">{ }</button>
               <button class="toolbar-button" type="button" data-line-format="- " title="List">☷</button>
+              <button id="ordered-list-button" class="toolbar-button" type="button" title="Numbered list">1.</button>
+              <button id="indent-list-button" class="toolbar-button" type="button" title="Indent list">↳</button>
               <button id="link-button" class="toolbar-button" type="button" title="Add link">↗</button>
             </div>
             <div class="toolbar-group color-group" aria-label="Colored code blocks">
@@ -72,6 +74,22 @@
           </div>
         </section>
       </div>
+
+      <section class="examples-section" aria-labelledby="examples-title">
+        <h2 id="examples-title">Formatting examples</h2>
+        <p>Use these examples as a quick reference for Discord message formatting.</p>
+        <div class="examples-grid">
+          <article><h3>Text styles</h3><code>**bold** &nbsp; *italic* &nbsp; __underline__ &nbsp; ~~strikethrough~~</code></article>
+          <article><h3>Spoiler</h3><code>||hidden text||</code></article>
+          <article><h3>Headings</h3><code># Heading 1<br>## Heading 2<br>### Heading 3</code></article>
+          <article><h3>Quote</h3><code>&gt; A single-line quote<br>&gt;&gt;&gt; A multi-line quote</code></article>
+          <article><h3>Bullet and indented lists</h3><code>- First item<br>&nbsp;&nbsp;- Nested item</code></article>
+          <article><h3>Numbered list</h3><code>1. First step<br>2. Second step</code></article>
+          <article><h3>Code</h3><code>`inline code`<br>```<br>code block<br>```</code></article>
+          <article><h3>Masked link</h3><code>[Open Discord](https://discord.com)</code></article>
+          <article><h3>Code colors</h3><code>```diff<br>+ Green code line<br>```</code></article>
+        </div>
+      </section>
     </main>
   </body>
 </html>
