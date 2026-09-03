@@ -3,6 +3,8 @@ const preview = document.querySelector('#preview');
 const copyButton = document.querySelector('#copy-button');
 const colorMenuButton = document.querySelector('#color-menu-button');
 const colorMenu = document.querySelector('#color-menu');
+const insertMenuButton = document.querySelector('#insert-menu-button');
+const insertMenu = document.querySelector('#insert-menu');
 const editorGrid = document.querySelector('.editor-grid');
 const editorPanel = document.querySelector('.editor-panel');
 const previewPanel = document.querySelector('.preview-panel');
@@ -34,8 +36,27 @@ colorMenuButton.addEventListener('click', event => {
   colorMenu.hidden = !open;
   colorMenuButton.setAttribute('aria-expanded', String(open));
 });
-document.addEventListener('click', () => { colorMenu.hidden = true; colorMenuButton.setAttribute('aria-expanded', 'false'); });
+insertMenuButton.addEventListener('click', event => {
+  event.stopPropagation();
+  const open = insertMenu.hidden;
+  insertMenu.hidden = !open;
+  insertMenuButton.setAttribute('aria-expanded', String(open));
+  colorMenu.hidden = true;
+  colorMenuButton.setAttribute('aria-expanded', 'false');
+});
+document.addEventListener('click', () => {
+  colorMenu.hidden = true;
+  colorMenuButton.setAttribute('aria-expanded', 'false');
+  insertMenu.hidden = true;
+  insertMenuButton.setAttribute('aria-expanded', 'false');
+});
 colorMenu.addEventListener('click', event => event.stopPropagation());
+insertMenu.addEventListener('click', event => {
+  event.stopPropagation();
+  if (!event.target.closest('button')) return;
+  insertMenu.hidden = true;
+  insertMenuButton.setAttribute('aria-expanded', 'false');
+});
 document.querySelectorAll('[data-color]').forEach(button => button.addEventListener('click', () => {
   const options = {
     red: ['diff', '- ', ''], orange: ['css', '[', ']'], yellow: ['fix', '', ''],
