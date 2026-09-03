@@ -5,9 +5,11 @@ A lightweight, browser-based tool for formatting Discord messages with Markdown,
 ## Features
 
 - Bold, italic, underline, strikethrough, and spoiler formatting
-- Headings, quotes, lists, links, inline code, and code blocks
+- H1, H2, H3, quotes, bullet lists, numbered lists, indented lists, links, inline code, and code blocks
 - Quick shortcuts for colored Discord code blocks
 - A live preview that processes your text locally in the browser
+- Undo and redo with `Ctrl/Cmd + Z` and `Ctrl/Cmd + Shift + Z`
+- A clear formatting reference that pairs each syntax example with its Discord preview
 - A static, zero-build setup with no dependencies
 
 > Discord does not support directly colored regular text. The color shortcuts use syntax-highlighted code blocks, which is Discord's supported workaround.
