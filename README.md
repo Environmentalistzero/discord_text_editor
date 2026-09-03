@@ -10,6 +10,8 @@ A lightweight, browser-based tool for formatting Discord messages with Markdown,
 - A live preview that processes your text locally in the browser
 - A static, zero-build setup with no dependencies
 
+> Discord does not support directly colored regular text. The color shortcuts use syntax-highlighted code blocks, which is Discord's supported workaround.
+
 ## Run locally
 
 Open `index.html` in a browser to get started. For the most reliable clipboard support across browsers, serve the project from a local web server.

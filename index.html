@@ -12,7 +12,6 @@
     <main class="page-shell">
       <header class="site-header">
         <div>
-          <p class="eyebrow">Open-source tool</p>
           <h1>Discord Text Editor</h1>
           <p class="subtitle">Format your message, preview it live, and copy it in one click.</p>
         </div>
@@ -23,8 +22,10 @@
       </header>
 
       <div class="editor-grid">
-        <section class="panel editor-panel" aria-label="Text editor">
-          <div class="toolbar" role="toolbar" aria-label="Formatting tools">
+        <section class="editor-section" aria-label="Text editor">
+          <h2>Editor</h2>
+          <div class="panel editor-panel">
+            <div class="toolbar" role="toolbar" aria-label="Formatting tools">
             <div class="toolbar-group" aria-label="Headings">
               <button class="toolbar-button heading-button" type="button" data-line-format="# " title="Heading 1">H1</button>
               <button class="toolbar-button heading-button" type="button" data-line-format="## " title="Heading 2">H2</button>
@@ -45,7 +46,7 @@
               <button id="link-button" class="toolbar-button" type="button" title="Add link">↗</button>
             </div>
             <div class="toolbar-group color-group" aria-label="Colored code blocks">
-              <button id="color-menu-button" class="toolbar-button" type="button" aria-expanded="false">Color ▾</button>
+              <button id="color-menu-button" class="toolbar-button" type="button" aria-expanded="false" title="Color through a code block">Code colors ▾</button>
               <div id="color-menu" class="color-menu" hidden>
                 <button type="button" data-color="red"><span class="dot red"></span>Red</button>
                 <button type="button" data-color="orange"><span class="dot orange"></span>Orange</button>
@@ -54,9 +55,10 @@
                 <button type="button" data-color="blue"><span class="dot blue"></span>Blue</button>
               </div>
             </div>
+            </div>
+            <label class="sr-only" for="editor">Your Discord message</label>
+            <textarea id="editor" spellcheck="true" placeholder="Write or paste the message you want to send to Discord. Select text and use the toolbar to format it."></textarea>
           </div>
-          <label class="sr-only" for="editor">Your Discord message</label>
-          <textarea id="editor" spellcheck="true" placeholder="Write or paste the message you want to send to Discord. Select text and use the toolbar to format it."></textarea>
         </section>
 
         <section class="preview-section" aria-label="Live preview">
@@ -68,7 +70,7 @@
               <div id="preview" class="preview" aria-live="polite"></div>
             </div>
           </div>
-          <p class="notice">The preview shows common Discord Markdown formatting. Your text is processed only in your browser.</p>
+          <p class="notice">The preview shows common Discord Markdown formatting. Your text is processed only in your browser. Discord supports color only through syntax-highlighted code blocks, not regular text.</p>
         </section>
       </div>
     </main>
