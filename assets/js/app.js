@@ -3,6 +3,12 @@ const preview = document.querySelector('#preview');
 const copyButton = document.querySelector('#copy-button');
 const colorMenuButton = document.querySelector('#color-menu-button');
 const colorMenu = document.querySelector('#color-menu');
+const editorGrid = document.querySelector('.editor-grid');
+const editorPanel = document.querySelector('.editor-panel');
+const previewPanel = document.querySelector('.preview-panel');
+const toolbar = document.querySelector('.toolbar');
+const undoHistory = [captureEditorState()];
+let undoIndex = 0;
 
 const formatMap = {
   bold: ['**', '**'], italic: ['*', '*'], underline: ['__', '__'],
@@ -11,7 +17,11 @@ const formatMap = {
 };
 
 document.querySelector('#current-time').textContent = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-editor.addEventListener('input', renderPreview);
+editor.addEventListener('input', () => {
+  renderPreview();
+  saveEditorState();
+});
+editor.addEventListener('keydown', handleUndoRedo);
 document.querySelectorAll('[data-format]').forEach(button => button.addEventListener('click', () => applyFormat(...formatMap[button.dataset.format])));
 document.querySelectorAll('[data-line-format]').forEach(button => button.addEventListener('click', () => applyLineFormat(button.dataset.lineFormat)));
 document.querySelector('#link-button').addEventListener('click', applyLink);
@@ -42,6 +52,7 @@ function applyFormat(prefix, suffix) {
   editor.focus();
   editor.setSelectionRange(selectionStart, selectionStart + selected.length);
   renderPreview();
+  saveEditorState();
 }
 
 function applyLineFormat(prefix) {
@@ -56,6 +67,7 @@ function applyLineFormat(prefix) {
   editor.focus();
   editor.setSelectionRange(firstLineStart, firstLineStart + updated.length);
   renderPreview();
+  saveEditorState();
 }
 
 function applyLink() {
@@ -68,6 +80,7 @@ function applyLink() {
   editor.focus();
   editor.setSelectionRange(start + 1, start + 1 + label.length);
   renderPreview();
+  saveEditorState();
 }
 
 function applyColor(language, linePrefix, lineSuffix) {
@@ -78,6 +91,38 @@ function applyColor(language, linePrefix, lineSuffix) {
   const contentStart = start + language.length + 4 + linePrefix.length;
   editor.focus();
   editor.setSelectionRange(contentStart, contentStart + selected.length);
+  renderPreview();
+  saveEditorState();
+}
+
+function captureEditorState() {
+  return {
+    value: editor.value,
+    selectionStart: editor.selectionStart,
+    selectionEnd: editor.selectionEnd
+  };
+}
+
+function saveEditorState() {
+  const nextState = captureEditorState();
+  const currentState = undoHistory[undoIndex];
+  if (currentState.value === nextState.value && currentState.selectionStart === nextState.selectionStart && currentState.selectionEnd === nextState.selectionEnd) return;
+  undoHistory.splice(undoIndex + 1);
+  undoHistory.push(nextState);
+  if (undoHistory.length > 100) undoHistory.shift();
+  undoIndex = undoHistory.length - 1;
+}
+
+function handleUndoRedo(event) {
+  if (!(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== 'z') return;
+  event.preventDefault();
+  const nextIndex = event.shiftKey ? undoIndex + 1 : undoIndex - 1;
+  if (nextIndex < 0 || nextIndex >= undoHistory.length) return;
+  undoIndex = nextIndex;
+  const state = undoHistory[undoIndex];
+  editor.value = state.value;
+  editor.focus();
+  editor.setSelectionRange(state.selectionStart, state.selectionEnd);
   renderPreview();
 }
 
@@ -119,6 +164,15 @@ function renderPreview() {
   html = html.replace(/(?:<li>.*?<\/li><br>?)+/g, match => `<ul>${match.replaceAll('<br>', '')}</ul>`);
   blocks.forEach((block, index) => { html = html.replace(`\u0000BLOCK${index}\u0000`, block); });
   preview.innerHTML = html;
+  syncWorkspaceHeight();
+}
+
+function syncWorkspaceHeight() {
+  const minimumHeight = window.matchMedia('(max-width: 860px)').matches ? 480 : 618;
+  editorGrid.style.setProperty('--workspace-height', '0px');
+  const editorContentHeight = toolbar.offsetHeight + editor.scrollHeight;
+  const previewContentHeight = previewPanel.scrollHeight;
+  editorGrid.style.setProperty('--workspace-height', `${Math.max(minimumHeight, editorContentHeight, previewContentHeight)}px`);
 }
 
 copyButton.addEventListener('click', async () => {

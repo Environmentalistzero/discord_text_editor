@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Format Discord messages with Markdown, preview them live, and copy them in one click." />
     <title>Discord Text Editor</title>
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <script src="assets/js/app.js" defer></script>
+    <link rel="stylesheet" href="assets/css/styles.css?v=3" />
+    <script src="assets/js/app.js?v=3" defer></script>
   </head>
   <body>
     <main class="page-shell">
@@ -46,7 +46,7 @@
               <button id="link-button" class="toolbar-button" type="button" title="Add link">↗</button>
             </div>
             <div class="toolbar-group color-group" aria-label="Colored code blocks">
-              <button id="color-menu-button" class="toolbar-button" type="button" aria-expanded="false" title="Color through a code block">Code colors ▾</button>
+              <button id="color-menu-button" class="toolbar-button" type="button" aria-expanded="false" title="Color through a code block">Color ▾</button>
               <div id="color-menu" class="color-menu" hidden>
                 <button type="button" data-color="red"><span class="dot red"></span>Red</button>
                 <button type="button" data-color="orange"><span class="dot orange"></span>Orange</button>
@@ -70,7 +70,6 @@
               <div id="preview" class="preview" aria-live="polite"></div>
             </div>
           </div>
-          <p class="notice">The preview shows common Discord Markdown formatting. Your text is processed only in your browser. Discord supports color only through syntax-highlighted code blocks, not regular text.</p>
         </section>
       </div>
     </main>
