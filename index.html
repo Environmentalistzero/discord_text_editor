@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="tr">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Discord mesajlarını Markdown biçiminde hazırlayın, önizleyin ve kopyalayın." />
-    <title>Discord Metin Düzenleyici</title>
+    <meta name="description" content="Format Discord messages with Markdown, preview them live, and copy them in one click." />
+    <title>Discord Text Editor</title>
     <link rel="stylesheet" href="assets/css/styles.css" />
     <script src="assets/js/app.js" defer></script>
   </head>
@@ -12,63 +12,63 @@
     <main class="page-shell">
       <header class="site-header">
         <div>
-          <p class="eyebrow">Açık kaynak araç</p>
-          <h1>Discord Metin Düzenleyici</h1>
-          <p class="subtitle">Metninizi biçimlendirin, canlı önizleyin ve tek tıkla kopyalayın.</p>
+          <p class="eyebrow">Open-source tool</p>
+          <h1>Discord Text Editor</h1>
+          <p class="subtitle">Format your message, preview it live, and copy it in one click.</p>
         </div>
         <button id="copy-button" class="primary-button" type="button">
           <span aria-hidden="true">⧉</span>
-          <span>Kopyala</span>
+          <span>Copy</span>
         </button>
       </header>
 
       <div class="editor-grid">
-        <section class="panel editor-panel" aria-label="Metin düzenleyici">
-          <div class="toolbar" role="toolbar" aria-label="Biçimlendirme araçları">
-            <div class="toolbar-group" aria-label="Başlıklar">
-              <button class="toolbar-button heading-button" type="button" data-line-format="# " title="Başlık 1">H1</button>
-              <button class="toolbar-button heading-button" type="button" data-line-format="## " title="Başlık 2">H2</button>
-              <button class="toolbar-button heading-button" type="button" data-line-format="### " title="Başlık 3">H3</button>
+        <section class="panel editor-panel" aria-label="Text editor">
+          <div class="toolbar" role="toolbar" aria-label="Formatting tools">
+            <div class="toolbar-group" aria-label="Headings">
+              <button class="toolbar-button heading-button" type="button" data-line-format="# " title="Heading 1">H1</button>
+              <button class="toolbar-button heading-button" type="button" data-line-format="## " title="Heading 2">H2</button>
+              <button class="toolbar-button heading-button" type="button" data-line-format="### " title="Heading 3">H3</button>
             </div>
-            <div class="toolbar-group" aria-label="Metin biçimi">
-              <button class="toolbar-button" type="button" data-format="bold" title="Kalın"><strong>B</strong></button>
-              <button class="toolbar-button" type="button" data-format="italic" title="İtalik"><em>I</em></button>
-              <button class="toolbar-button" type="button" data-format="underline" title="Altı çizili"><u>U</u></button>
-              <button class="toolbar-button" type="button" data-format="strike" title="Üstü çizili"><s>S</s></button>
+            <div class="toolbar-group" aria-label="Text styles">
+              <button class="toolbar-button" type="button" data-format="bold" title="Bold"><strong>B</strong></button>
+              <button class="toolbar-button" type="button" data-format="italic" title="Italic"><em>I</em></button>
+              <button class="toolbar-button" type="button" data-format="underline" title="Underline"><u>U</u></button>
+              <button class="toolbar-button" type="button" data-format="strike" title="Strikethrough"><s>S</s></button>
               <button class="toolbar-button" type="button" data-format="spoiler" title="Spoiler">▩</button>
             </div>
-            <div class="toolbar-group" aria-label="Bloklar">
-              <button class="toolbar-button" type="button" data-line-format="> " title="Alıntı">❝</button>
-              <button class="toolbar-button" type="button" data-format="inline-code" title="Satır içi kod">&lt;/&gt;</button>
-              <button class="toolbar-button" type="button" data-format="code-block" title="Kod bloğu">{ }</button>
-              <button class="toolbar-button" type="button" data-line-format="- " title="Liste">☷</button>
-              <button id="link-button" class="toolbar-button" type="button" title="Bağlantı ekle">↗</button>
+            <div class="toolbar-group" aria-label="Blocks">
+              <button class="toolbar-button" type="button" data-line-format="> " title="Quote">❝</button>
+              <button class="toolbar-button" type="button" data-format="inline-code" title="Inline code">&lt;/&gt;</button>
+              <button class="toolbar-button" type="button" data-format="code-block" title="Code block">{ }</button>
+              <button class="toolbar-button" type="button" data-line-format="- " title="List">☷</button>
+              <button id="link-button" class="toolbar-button" type="button" title="Add link">↗</button>
             </div>
-            <div class="toolbar-group color-group" aria-label="Renkli kod blokları">
-              <button id="color-menu-button" class="toolbar-button" type="button" aria-expanded="false">Renk ▾</button>
+            <div class="toolbar-group color-group" aria-label="Colored code blocks">
+              <button id="color-menu-button" class="toolbar-button" type="button" aria-expanded="false">Color ▾</button>
               <div id="color-menu" class="color-menu" hidden>
-                <button type="button" data-color="red"><span class="dot red"></span>Kırmızı</button>
-                <button type="button" data-color="orange"><span class="dot orange"></span>Turuncu</button>
-                <button type="button" data-color="yellow"><span class="dot yellow"></span>Sarı</button>
-                <button type="button" data-color="green"><span class="dot green"></span>Yeşil</button>
-                <button type="button" data-color="blue"><span class="dot blue"></span>Mavi</button>
+                <button type="button" data-color="red"><span class="dot red"></span>Red</button>
+                <button type="button" data-color="orange"><span class="dot orange"></span>Orange</button>
+                <button type="button" data-color="yellow"><span class="dot yellow"></span>Yellow</button>
+                <button type="button" data-color="green"><span class="dot green"></span>Green</button>
+                <button type="button" data-color="blue"><span class="dot blue"></span>Blue</button>
               </div>
             </div>
           </div>
-          <label class="sr-only" for="editor">Discord mesajınız</label>
-          <textarea id="editor" spellcheck="true" placeholder="Discord'a göndermek istediğiniz metni buraya yazın veya yapıştırın. Metni seçip araç çubuğundan biçimlendirebilirsiniz."></textarea>
+          <label class="sr-only" for="editor">Your Discord message</label>
+          <textarea id="editor" spellcheck="true" placeholder="Write or paste the message you want to send to Discord. Select text and use the toolbar to format it."></textarea>
         </section>
 
-        <section class="preview-section" aria-label="Canlı önizleme">
-          <h2>Discord canlı önizleme</h2>
+        <section class="preview-section" aria-label="Live preview">
+          <h2>Discord live preview</h2>
           <div class="panel preview-panel">
             <div class="message-avatar" aria-hidden="true">D</div>
             <div class="message-content">
-              <div class="message-meta"><strong>Sen</strong><span>bugün saat <time id="current-time"></time></span></div>
+              <div class="message-meta"><strong>You</strong><span>today at <time id="current-time"></time></span></div>
               <div id="preview" class="preview" aria-live="polite"></div>
             </div>
           </div>
-          <p class="notice">Önizleme, yaygın Discord Markdown biçimlerini gösterir. Metniniz yalnızca tarayıcınızda işlenir.</p>
+          <p class="notice">The preview shows common Discord Markdown formatting. Your text is processed only in your browser.</p>
         </section>
       </div>
     </main>

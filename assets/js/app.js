@@ -10,7 +10,7 @@ const formatMap = {
   'code-block': ['```\n', '\n```']
 };
 
-document.querySelector('#current-time').textContent = new Date().toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
+document.querySelector('#current-time').textContent = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
 editor.addEventListener('input', renderPreview);
 document.querySelectorAll('[data-format]').forEach(button => button.addEventListener('click', () => applyFormat(...formatMap[button.dataset.format])));
 document.querySelectorAll('[data-line-format]').forEach(button => button.addEventListener('click', () => applyLineFormat(button.dataset.lineFormat)));
@@ -59,10 +59,10 @@ function applyLineFormat(prefix) {
 }
 
 function applyLink() {
-  const url = window.prompt('Bağlantı adresini girin:', 'https://');
+  const url = window.prompt('Enter the link URL:', 'https://');
   if (!url) return;
   const { selectionStart: start, selectionEnd: end, value } = editor;
-  const label = value.slice(start, end) || 'Bağlantı metni';
+  const label = value.slice(start, end) || 'Link text';
   const inserted = `[${label}](${url})`;
   editor.value = value.slice(0, start) + inserted + value.slice(end);
   editor.focus();
@@ -72,7 +72,7 @@ function applyLink() {
 
 function applyColor(language, linePrefix, lineSuffix) {
   const { selectionStart: start, selectionEnd: end, value } = editor;
-  const selected = value.slice(start, end) || 'Renkli metin';
+  const selected = value.slice(start, end) || 'Colored text';
   const inserted = `\`\`\`${language}\n${linePrefix}${selected}${lineSuffix}\n\`\`\``;
   editor.value = value.slice(0, start) + inserted + value.slice(end);
   const contentStart = start + language.length + 4 + linePrefix.length;
@@ -126,10 +126,10 @@ copyButton.addEventListener('click', async () => {
   const label = copyButton.lastElementChild;
   try {
     await navigator.clipboard.writeText(editor.value);
-    label.textContent = 'Kopyalandı!';
+    label.textContent = 'Copied!';
     copyButton.classList.add('success');
-    window.setTimeout(() => { label.textContent = 'Kopyala'; copyButton.classList.remove('success'); }, 1800);
-  } catch { window.alert('Metin kopyalanamadı. Lütfen metni manuel olarak seçip kopyalayın.'); }
+    window.setTimeout(() => { label.textContent = 'Copy'; copyButton.classList.remove('success'); }, 1800);
+  } catch { window.alert('Could not copy the text. Please select and copy it manually.'); }
 });
 
 renderPreview();

@@ -1,30 +1,30 @@
-# Discord Metin Düzenleyici
+# Discord Text Editor
 
-Discord mesajlarını Markdown ile biçimlendirmek, canlı önizlemek ve panoya kopyalamak için sade, tarayıcı tabanlı bir araç.
+A lightweight, browser-based tool for formatting Discord messages with Markdown, previewing them live, and copying the final text.
 
-## Özellikler
+## Features
 
-- Kalın, italik, altı çizili, üstü çizili ve spoiler biçimi
-- Başlık, alıntı, liste, bağlantı ve kod bloğu desteği
-- Renkli Discord kod blokları için hızlı kısayollar
-- Metni bir sunucuya göndermeden tarayıcı içinde çalışan canlı önizleme
-- Kurulum ve derleme adımı gerektirmeyen statik yapı
+- Bold, italic, underline, strikethrough, and spoiler formatting
+- Headings, quotes, lists, links, inline code, and code blocks
+- Quick shortcuts for colored Discord code blocks
+- A live preview that processes your text locally in the browser
+- A static, zero-build setup with no dependencies
 
-## Yerelde çalıştırma
+## Run locally
 
-`index.html` dosyasını tarayıcıda açmanız yeterlidir. Kopyalama özelliğinin tüm tarayıcılarda sorunsuz çalışması için projeyi bir yerel sunucu ile açmanız önerilir.
+Open `index.html` in a browser to get started. For the most reliable clipboard support across browsers, serve the project from a local web server.
 
-## GitHub Pages ile yayınlama
+## Deploy with GitHub Pages
 
-1. Depoyu GitHub'a gönderin.
-2. GitHub'da **Settings → Pages** sayfasını açın.
-3. **Deploy from a branch** seçeneğinde `main` dalını ve `/ (root)` klasörünü seçin.
-4. Kaydedin; GitHub birkaç dakika içinde site adresini oluşturur.
+1. Push the repository to GitHub.
+2. Open **Settings → Pages** in the repository.
+3. Choose **Deploy from a branch**, then select the `main` branch and the `/ (root)` folder.
+4. Save the setting. GitHub will create the site URL within a few minutes.
 
-## Katkı
+## Contributing
 
-Hata bildirimi, fikir ve pull request'ler memnuniyetle karşılanır. Büyük bir değişiklikten önce konu açarak yaklaşımı konuşalım.
+Bug reports, ideas, and pull requests are welcome. For larger changes, please open an issue first so we can discuss the approach.
 
-## Lisans
+## License
 
-Bu proje [MIT Lisansı](LICENSE) ile lisanslanmıştır.
+This project is licensed under the [MIT License](LICENSE).
