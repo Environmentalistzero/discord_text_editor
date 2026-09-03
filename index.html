@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Format Discord messages with Markdown, preview them live, and copy them in one click." />
     <title>Discord Text Editor</title>
-    <link rel="stylesheet" href="assets/css/styles.css?v=4" />
+    <link rel="stylesheet" href="assets/css/styles.css?v=5" />
     <script src="assets/js/app.js?v=4" defer></script>
   </head>
   <body>
@@ -26,37 +26,49 @@
           <h2>Editor</h2>
           <div class="panel editor-panel">
             <div class="toolbar" role="toolbar" aria-label="Formatting tools">
-            <div class="toolbar-group" aria-label="Headings">
-              <button class="toolbar-button heading-button" type="button" data-line-format="# " title="Heading 1">H1</button>
-              <button class="toolbar-button heading-button" type="button" data-line-format="## " title="Heading 2">H2</button>
-              <button class="toolbar-button heading-button" type="button" data-line-format="### " title="Heading 3">H3</button>
-            </div>
-            <div class="toolbar-group" aria-label="Text styles">
-              <button class="toolbar-button" type="button" data-format="bold" title="Bold"><strong>B</strong></button>
-              <button class="toolbar-button" type="button" data-format="italic" title="Italic"><em>I</em></button>
-              <button class="toolbar-button" type="button" data-format="underline" title="Underline"><u>U</u></button>
-              <button class="toolbar-button" type="button" data-format="strike" title="Strikethrough"><s>S</s></button>
-              <button class="toolbar-button" type="button" data-format="spoiler" title="Spoiler">▩</button>
-            </div>
-            <div class="toolbar-group" aria-label="Blocks">
-              <button class="toolbar-button" type="button" data-line-format="> " title="Quote">❝</button>
-              <button class="toolbar-button" type="button" data-format="inline-code" title="Inline code">&lt;/&gt;</button>
-              <button class="toolbar-button" type="button" data-format="code-block" title="Code block">{ }</button>
-              <button class="toolbar-button" type="button" data-line-format="- " title="List">☷</button>
-              <button id="ordered-list-button" class="toolbar-button" type="button" title="Numbered list">1.</button>
-              <button id="indent-list-button" class="toolbar-button" type="button" title="Indent list">↳</button>
-              <button id="link-button" class="toolbar-button" type="button" title="Add link">↗</button>
-            </div>
-            <div class="toolbar-group color-group" aria-label="Colored code blocks">
-              <button id="color-menu-button" class="toolbar-button" type="button" aria-expanded="false" title="Color through a code block">Color ▾</button>
-              <div id="color-menu" class="color-menu" hidden>
-                <button type="button" data-color="red"><span class="dot red"></span>Red</button>
-                <button type="button" data-color="orange"><span class="dot orange"></span>Orange</button>
-                <button type="button" data-color="yellow"><span class="dot yellow"></span>Yellow</button>
-                <button type="button" data-color="green"><span class="dot green"></span>Green</button>
-                <button type="button" data-color="blue"><span class="dot blue"></span>Blue</button>
+              <div class="toolbar-section" aria-label="Headings">
+                <span class="toolbar-label">Headings</span>
+                <div class="toolbar-controls">
+                  <button class="toolbar-button heading-button" type="button" data-line-format="# " title="Heading 1">H1</button>
+                  <button class="toolbar-button heading-button" type="button" data-line-format="## " title="Heading 2">H2</button>
+                  <button class="toolbar-button heading-button" type="button" data-line-format="### " title="Heading 3">H3</button>
+                </div>
               </div>
-            </div>
+              <div class="toolbar-section" aria-label="Text styles">
+                <span class="toolbar-label">Text styles</span>
+                <div class="toolbar-controls">
+                  <button class="toolbar-button" type="button" data-format="bold" title="Bold"><strong>B</strong></button>
+                  <button class="toolbar-button" type="button" data-format="italic" title="Italic"><em>I</em></button>
+                  <button class="toolbar-button" type="button" data-format="underline" title="Underline"><u>U</u></button>
+                  <button class="toolbar-button" type="button" data-format="strike" title="Strikethrough"><s>S</s></button>
+                  <button class="toolbar-button" type="button" data-format="spoiler" title="Spoiler">Spoiler</button>
+                </div>
+              </div>
+              <div class="toolbar-section" aria-label="Blocks">
+                <span class="toolbar-label">Blocks</span>
+                <div class="toolbar-controls">
+                  <button class="toolbar-button toolbar-button-label" type="button" data-line-format="> " title="Quote">Quote</button>
+                  <button class="toolbar-button toolbar-button-label" type="button" data-format="inline-code" title="Inline code">Inline code</button>
+                  <button class="toolbar-button toolbar-button-label" type="button" data-format="code-block" title="Code block">Code block</button>
+                  <button class="toolbar-button toolbar-button-label" type="button" data-line-format="- " title="Bullet list">Bullet list</button>
+                  <button id="ordered-list-button" class="toolbar-button toolbar-button-label" type="button" title="Numbered list">Numbered</button>
+                  <button id="indent-list-button" class="toolbar-button toolbar-button-label" type="button" title="Indent list">Indent</button>
+                  <button id="link-button" class="toolbar-button toolbar-button-label" type="button" title="Add link">Link</button>
+                </div>
+              </div>
+              <div class="toolbar-section color-section" aria-label="Colored code blocks">
+                <span class="toolbar-label">Code colors</span>
+                <div class="toolbar-controls color-group">
+                  <button id="color-menu-button" class="toolbar-button toolbar-button-label" type="button" aria-expanded="false" title="Color through a code block">Choose color ▾</button>
+                  <div id="color-menu" class="color-menu" hidden>
+                    <button type="button" data-color="red"><span class="dot red"></span>Red</button>
+                    <button type="button" data-color="orange"><span class="dot orange"></span>Orange</button>
+                    <button type="button" data-color="yellow"><span class="dot yellow"></span>Yellow</button>
+                    <button type="button" data-color="green"><span class="dot green"></span>Green</button>
+                    <button type="button" data-color="blue"><span class="dot blue"></span>Blue</button>
+                  </div>
+                </div>
+              </div>
             </div>
             <label class="sr-only" for="editor">Your Discord message</label>
             <textarea id="editor" spellcheck="true" placeholder="Write or paste the message you want to send to Discord. Select text and use the toolbar to format it."></textarea>
@@ -77,17 +89,17 @@
 
       <section class="examples-section" aria-labelledby="examples-title">
         <h2 id="examples-title">Formatting examples</h2>
-        <p>Use these examples as a quick reference for Discord message formatting.</p>
+        <p>Each card shows the syntax you enter and how it appears in Discord.</p>
         <div class="examples-grid">
-          <article><h3>Text styles</h3><code>**bold** &nbsp; *italic* &nbsp; __underline__ &nbsp; ~~strikethrough~~</code></article>
-          <article><h3>Spoiler</h3><code>||hidden text||</code></article>
-          <article><h3>Headings</h3><code># Heading 1<br>## Heading 2<br>### Heading 3</code></article>
-          <article><h3>Quote</h3><code>&gt; A single-line quote<br>&gt;&gt;&gt; A multi-line quote</code></article>
-          <article><h3>Bullet and indented lists</h3><code>- First item<br>&nbsp;&nbsp;- Nested item</code></article>
-          <article><h3>Numbered list</h3><code>1. First step<br>2. Second step</code></article>
-          <article><h3>Code</h3><code>`inline code`<br>```<br>code block<br>```</code></article>
-          <article><h3>Masked link</h3><code>[Open Discord](https://discord.com)</code></article>
-          <article><h3>Code colors</h3><code>```diff<br>+ Green code line<br>```</code></article>
+          <article class="example-card"><h3>Text styles</h3><code class="example-syntax">**bold** · *italic* · __underline__ · ~~strikethrough~~</code><p class="example-result"><strong>bold</strong> · <em>italic</em> · <u>underline</u> · <s>strikethrough</s></p></article>
+          <article class="example-card"><h3>Spoiler</h3><code class="example-syntax">||hidden text||</code><p class="example-result"><span class="example-spoiler">hidden text</span></p></article>
+          <article class="example-card"><h3>Headings</h3><code class="example-syntax"># Heading 1<br>## Heading 2<br>### Heading 3</code><div class="example-result heading-result"><strong>Heading 1</strong><span>Heading 2</span><small>Heading 3</small></div></article>
+          <article class="example-card"><h3>Quote</h3><code class="example-syntax">&gt; A single-line quote<br>&gt;&gt;&gt; A multi-line quote</code><blockquote class="example-result">A single-line quote</blockquote></article>
+          <article class="example-card"><h3>Bullet and indented lists</h3><code class="example-syntax">- First item<br>&nbsp;&nbsp;- Nested item</code><div class="example-result list-result">• First item<br><span>• Nested item</span></div></article>
+          <article class="example-card"><h3>Numbered list</h3><code class="example-syntax">1. First step<br>2. Second step</code><div class="example-result list-result">1. First step<br>2. Second step</div></article>
+          <article class="example-card"><h3>Code</h3><code class="example-syntax">`inline code`<br>```<br>code block<br>```</code><p class="example-result"><code>inline code</code></p></article>
+          <article class="example-card"><h3>Masked link</h3><code class="example-syntax">[Open Discord](https://discord.com)</code><p class="example-result"><a href="https://discord.com" target="_blank" rel="noopener noreferrer">Open Discord</a></p></article>
+          <article class="example-card"><h3>Code colors</h3><code class="example-syntax">```diff<br>+ Green code line<br>```</code><pre class="example-result example-color">+ Green code line</pre></article>
         </div>
       </section>
     </main>
