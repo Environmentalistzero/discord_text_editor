@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Format Discord messages with Markdown, preview them live, and copy them in one click." />
     <title>Discord Text Editor</title>
-    <link rel="stylesheet" href="assets/css/styles.css?v=7" />
+    <link rel="stylesheet" href="assets/css/styles.css?v=8" />
     <script src="assets/js/app.js?v=5" defer></script>
   </head>
   <body>
@@ -85,13 +85,19 @@
           <div class="example-row example-header" role="row"><span role="columnheader">Format</span><span role="columnheader">What you type</span><span role="columnheader">Discord preview</span></div>
           <article class="example-row" role="row"><h3 role="cell">Text styles</h3><code role="cell">**bold** · *italic* · __underline__ · ~~removed~~</code><p class="example-render" role="cell"><strong>bold</strong> · <em>italic</em> · <u>underline</u> · <s>removed</s></p></article>
           <article class="example-row" role="row"><h3 role="cell">Spoiler</h3><code role="cell">||spoiler||</code><p class="example-render" role="cell"><span class="example-spoiler">spoiler</span></p></article>
-          <article class="example-row" role="row"><h3 role="cell">Heading</h3><code role="cell"># Project update</code><p class="example-render example-heading" role="cell">Project update</p></article>
+          <article class="example-row" role="row"><h3 role="cell">Heading 1 (H1)</h3><code role="cell"># Project update</code><p class="example-render example-heading example-heading-1" role="cell">Project update</p></article>
+          <article class="example-row" role="row"><h3 role="cell">Heading 2 (H2)</h3><code role="cell">## Project update</code><p class="example-render example-heading example-heading-2" role="cell">Project update</p></article>
+          <article class="example-row" role="row"><h3 role="cell">Heading 3 (H3)</h3><code role="cell">### Project update</code><p class="example-render example-heading example-heading-3" role="cell">Project update</p></article>
           <article class="example-row" role="row"><h3 role="cell">Quote</h3><code role="cell">&gt; A quoted message</code><blockquote class="example-render" role="cell">A quoted message</blockquote></article>
           <article class="example-row" role="row"><h3 role="cell">Bullet list</h3><code role="cell">- First item<br>&nbsp;&nbsp;- Nested item</code><div class="example-render list-result" role="cell">• First item<br><span>• Nested item</span></div></article>
           <article class="example-row" role="row"><h3 role="cell">Numbered list</h3><code role="cell">1. First step<br>2. Second step</code><div class="example-render list-result" role="cell">1. First step<br>2. Second step</div></article>
           <article class="example-row" role="row"><h3 role="cell">Inline code</h3><code role="cell">`inline code`</code><p class="example-render" role="cell"><code>inline code</code></p></article>
           <article class="example-row" role="row"><h3 role="cell">Masked link</h3><code role="cell">[Open Discord](https://discord.com)</code><p class="example-render" role="cell"><a href="https://discord.com" target="_blank" rel="noopener noreferrer">Open Discord</a></p></article>
-          <article class="example-row" role="row"><h3 role="cell">Code color</h3><code role="cell">```diff<br>+ Green code line<br>```</code><pre class="example-render example-color" role="cell">+ Green code line</pre></article>
+          <article class="example-row" role="row"><h3 role="cell">Red code color</h3><code role="cell">```diff<br>- Red code line<br>```</code><pre class="example-render example-color example-color-red" role="cell">- Red code line</pre></article>
+          <article class="example-row" role="row"><h3 role="cell">Orange code color</h3><code role="cell">```css<br>[Orange code line]<br>```</code><pre class="example-render example-color example-color-orange" role="cell">[Orange code line]</pre></article>
+          <article class="example-row" role="row"><h3 role="cell">Yellow code color</h3><code role="cell">```fix<br>Yellow code line<br>```</code><pre class="example-render example-color example-color-yellow" role="cell">Yellow code line</pre></article>
+          <article class="example-row" role="row"><h3 role="cell">Green code color</h3><code role="cell">```diff<br>+ Green code line<br>```</code><pre class="example-render example-color example-color-green" role="cell">+ Green code line</pre></article>
+          <article class="example-row" role="row"><h3 role="cell">Blue code color</h3><code role="cell">```ini<br>[Blue code line]<br>```</code><pre class="example-render example-color example-color-blue" role="cell">[Blue code line]</pre></article>
         </div>
       </section>
     </main>
